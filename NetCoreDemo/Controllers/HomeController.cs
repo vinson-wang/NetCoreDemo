@@ -9,8 +9,10 @@ namespace NetCoreDemo.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
+        private readonly NetCoreDBContext _netCoreDBContext;
+        public HomeController(NetCoreDBContext netCoreDBContext)
         {
+            _netCoreDBContext = netCoreDBContext;
         }
 
         /*
@@ -42,7 +44,16 @@ namespace NetCoreDemo.Controllers
 
         public ViewResult Index()
         {
-            Employee employee = new Employee { ID = 1, Name = "Vinson" };
+            var model = new HomePageViewModel();
+            SQLEmployeeData sqlData = new SQLEmployeeData(_netCoreDBContext);
+            model.Employees = sqlData.GetAll();
+            return View(model);
+        }
+
+        public ViewResult Detail(int Id)
+        {
+            SQLEmployeeData sqlData = new SQLEmployeeData(_netCoreDBContext);
+            Employee employee = sqlData.Get(Id);
             return View(employee);
         }
     }
@@ -70,5 +81,10 @@ namespace NetCoreDemo.Controllers
         {
             return _netCoreDBContext.Employees.ToList<Employee>();
         }
+    }
+
+    public class HomePageViewModel
+    {
+        public IEnumerable<Employee> Employees { get; set; }
     }
 }

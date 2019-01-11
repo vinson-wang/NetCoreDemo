@@ -1,0 +1,9 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using NetCoreDemo.Controllers
+
+@*
+    视图导入文件名为_ViewImports.cshtml
+    跟视图起始页一样，我们可以把视图导入_ViewImports.cshtml放到一个文件夹中，那么视图导入中的代码则会影响当前文件夹和所有的递归子文件夹中的视图
+    在视图导入文件中_ViewImports.cshtml，我们可以编写一些C#代码，和放置常规的指令来引入视图所需要的命名空间
+    如果某个文件夹下的大部分视图都会使用到某个命名空间，那么我们可以在视图导入中使用一次@using导入即可，而不是在每个视图中使用@using指令分别导入或者输入全限定类名
+*@

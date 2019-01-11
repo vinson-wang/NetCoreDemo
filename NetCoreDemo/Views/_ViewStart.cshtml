@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+@*MVC中的Razor视图引擎有一个约定，就是在渲染单个控制器视图前，会优先查找名称为_ViewStart.cshtml的文件，并执行该文件中的代码*@
+
+@*
+    _ViewStart.cshtml 的运行机制
+    1.当MVC框架中的Razor开始渲染视图前，它会递归检查文件夹结构层次中是否存在ViewStart文件
+    2.我们已将_ViewStart直接放入了Views文件夹中。这将影响Views文件夹内的所有文件夹中的所有视图以及Home文件夹内的视图以及Shared文件夹以及将来可能添加的其它任何控制器文件夹
+    3.如果我们使用ViewStart并将其仅放置在Home文件夹中，那么只有在Home文件夹中的视图被渲染时才会执行这一小段代码
+    4.我们甚至可以拥有多个ViewStart文件，因此我们可以在Views文件夹中的ViewStart.cshtml中设置所有视图的布局视图
+    5.如果我们想要改变Home文件夹中所有视图的默认设置，可以在Home文件夹中设置另一个ViewStar，将布局设置为其它内容
+*@
+
+

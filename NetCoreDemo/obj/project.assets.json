@@ -12542,11 +12542,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\NetCoreDemo\\NetCoreDemo\\NetCoreDemo.csproj",
+      "projectUniqueName": "I:\\NetCoreDemo\\NetCoreDemo\\NetCoreDemo.csproj",
       "projectName": "NetCoreDemo",
-      "projectPath": "C:\\Users\\Administrator\\source\\repos\\NetCoreDemo\\NetCoreDemo\\NetCoreDemo.csproj",
+      "projectPath": "I:\\NetCoreDemo\\NetCoreDemo\\NetCoreDemo.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator\\source\\repos\\NetCoreDemo\\NetCoreDemo\\obj\\",
+      "outputPath": "I:\\NetCoreDemo\\NetCoreDemo\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
