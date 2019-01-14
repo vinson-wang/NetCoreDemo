@@ -2,6 +2,7 @@
 using NetCoreDemo.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -56,6 +57,55 @@ namespace NetCoreDemo.Controllers
             Employee employee = sqlData.Get(Id);
             return View(employee);
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(EmployeeEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var employee = new Employee();
+                employee.Name = model.Name;
+                SQLEmployeeData sqlData = new SQLEmployeeData(_netCoreDBContext);
+                sqlData.add(employee);
+
+                return RedirectToAction("Detail", new { Id = employee.ID });
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int Id)
+        {
+            SQLEmployeeData sqlData = new SQLEmployeeData(_netCoreDBContext);
+            Employee employee = sqlData.Get(Id);
+            if (employee == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(employee);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int Id, EmployeeEditViewModel model)
+        {
+            SQLEmployeeData sqlData = new SQLEmployeeData(_netCoreDBContext);
+            Employee employee = sqlData.Get(Id);
+            if (employee != null && ModelState.IsValid)
+            {
+                employee.Name = model.Name;
+                _netCoreDBContext.SaveChanges();
+                return RedirectToAction("Detail", new { Id = employee.ID });
+            }
+
+            return View(employee);
+        }
     }
 
     public class SQLEmployeeData
@@ -86,5 +136,11 @@ namespace NetCoreDemo.Controllers
     public class HomePageViewModel
     {
         public IEnumerable<Employee> Employees { get; set; }
+    }
+
+    public class EmployeeEditViewModel
+    {
+        [Required, MaxLength(80)]
+        public string Name { get; set; }
     }
 }

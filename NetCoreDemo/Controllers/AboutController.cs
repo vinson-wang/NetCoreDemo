@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace NetCoreDemo.Controllers
 {
     //属性路由
-    [Route("    ")]
+    [Route("about")]
     public class AboutController
     {
         public AboutController()
