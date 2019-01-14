@@ -42,8 +42,10 @@
             <td>@employee.ID</td>
             <td>@employee.Name</td>
             <td class="txt-left">
-                <a asp-action="Detail" asp-route-Id="@employee.ID">详情</a> &nbsp; <a asp-controller="Home" asp-action="Edit" asp-route-id="@employee.ID">编辑</a>
+                <a asp-action="Detail" asp-route-Id="@employee.ID">详情</a> &nbsp; <a asp-controller="Home" asp-action="Edit" asp-route-Id="@employee.ID">编辑</a>
             </td>
         </tr>
     }
 </table>
+<br />
+<p><a asp-action="Create">新增员工</a></p>
