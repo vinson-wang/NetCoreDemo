@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using NetCoreDemo.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace NetCoreDemo.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly NetCoreDBContext _netCoreDBContext;
@@ -43,6 +46,7 @@ namespace NetCoreDemo.Controllers
         //    return new ObjectResult(employee);
         //}
 
+        [AllowAnonymous]
         public ViewResult Index()
         {
             var model = new HomePageViewModel();
@@ -141,6 +145,7 @@ namespace NetCoreDemo.Controllers
     public class EmployeeEditViewModel
     {
         [Required, MaxLength(80)]
+        [DisplayName("员工名称")]
         public string Name { get; set; }
     }
 }

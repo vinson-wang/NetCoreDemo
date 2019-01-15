@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -32,6 +33,8 @@ namespace NetCoreDemo
             services.AddMvc();
             //注册EF服务
             services.AddEntityFrameworkSqlServer().AddDbContext<NetCoreDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //注册Identity服务
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<NetCoreDBContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +60,9 @@ namespace NetCoreDemo
 
             //中间件-使用Mvc默认路由
             //app.UseMvcWithDefaultRoute();
+
+            //中间件-使用Identity身份验证
+            app.UseAuthentication();
 
             //中间件-使用Mvc路由配置
             app.UseMvc(ConfigureRoute);
